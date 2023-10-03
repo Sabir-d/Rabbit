@@ -60,7 +60,7 @@ namespace Rabbit
             thread.Start();
         }
 
-        public void Stop(string queues)
+        public void Stop()
         {
             _run = false;
         }

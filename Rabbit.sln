@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit", "Rabbit\Rabbit.csproj", "{CE4EA7EB-CCA4-45F9-872F-BE2249981EA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "write", "write\write.csproj", "{44CC403F-EC42-4353-9C6E-187F8AC9710B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "read", "read\read.csproj", "{0E2FE201-AA9D-4EC5-80CC-926E0F380C33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{CE4EA7EB-CCA4-45F9-872F-BE2249981EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE4EA7EB-CCA4-45F9-872F-BE2249981EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE4EA7EB-CCA4-45F9-872F-BE2249981EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44CC403F-EC42-4353-9C6E-187F8AC9710B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44CC403F-EC42-4353-9C6E-187F8AC9710B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44CC403F-EC42-4353-9C6E-187F8AC9710B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44CC403F-EC42-4353-9C6E-187F8AC9710B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E2FE201-AA9D-4EC5-80CC-926E0F380C33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E2FE201-AA9D-4EC5-80CC-926E0F380C33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E2FE201-AA9D-4EC5-80CC-926E0F380C33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E2FE201-AA9D-4EC5-80CC-926E0F380C33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
