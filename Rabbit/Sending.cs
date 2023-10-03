@@ -9,7 +9,7 @@ namespace Rabbit
 {
     public class Sending
     {
-        private string _hostName = "localhost";
+        private string _hostName = "192.168.1.83";
         private string _userName = "sabir";
         private string _password = "service";
 
