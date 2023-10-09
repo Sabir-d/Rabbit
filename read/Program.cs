@@ -12,7 +12,7 @@ namespace read
     {
         static void Main(string[] args)
         {
-            Received received = new Received();
+            Received received = new Received("localhost","sabir","service");
 
             received.Start("test2", test);
             Console.WriteLine("для остановки нажмите клавишу");

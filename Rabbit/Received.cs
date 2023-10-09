@@ -11,46 +11,72 @@ namespace Rabbit
 {
     public class Received
     {
-        private string _hostName = "192.168.1.83";
-        private string _userName = "sabir";
-        private string _password = "service";
+        private string _hostName;
+        private string _userName;
+        private string _password;
         private bool _run = false;
+        private bool conect = false;
+        private bool er = false;
         private Thread thread;
+        IConnection connection;
+
+        public Received(string hostName, string userName, string password)
+        {
+            _hostName = hostName;
+            _userName = userName;
+            _password = password;
+        }
 
         public void Read(string queues, Func<string, bool> delegat)
         {
-            var factory = new ConnectionFactory
+            while (_run && !er)
             {
-                HostName = _hostName,
-                UserName = _userName,
-                Password = _password
-            };
-            var connection = factory.CreateConnection();
-
-            var channel = connection.CreateModel();
-
-            channel.QueueDeclare(
-                queue: queues,
-                durable: true,
-                exclusive: false,
-                autoDelete: false,
-                arguments: null
-            );
-
-            var consumer = new EventingBasicConsumer(channel);
-            consumer.Received += (model, ea) =>
-            {
-                var body = ea.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
-                bool er = delegat.Invoke(message);
-                if (!_run || !er)
+                try
                 {
-                    channel.Close();
-                    connection.Close();
-                    thread.Abort();
+                    if (!conect)
+                    {
+                        Console.WriteLine("Connect....");
+                        var factory = new ConnectionFactory
+                        {
+                            HostName = _hostName,
+                            UserName = _userName,
+                            Password = _password
+                        };
+                        connection = factory.CreateConnection();
+                        Console.WriteLine("Connect: Ok");
+                        var channel = connection.CreateModel();
+
+                        channel.QueueDeclare(
+                            queue: queues,
+                            durable: true,
+                            exclusive: false,
+                            autoDelete: false,
+                            arguments: null
+                        );
+                        Console.WriteLine("channel: Ok");
+                        var consumer = new EventingBasicConsumer(channel);
+                        consumer.Received += (model, ea) =>
+                        {
+                            var body = ea.Body.ToArray();
+                            var message = Encoding.UTF8.GetString(body);
+                            bool er = delegat.Invoke(message);
+                            if (!_run || !er)
+                            {
+                                channel.Close();
+                                connection.Close();
+                                thread.Abort();
+                            }
+                        };
+                        channel.BasicConsume(queue: queues, autoAck: true, consumer: consumer);
+                    }
+                    conect = connection.IsOpen;
                 }
-            };
-            channel.BasicConsume(queue: queues, autoAck: true, consumer: consumer);
+                catch
+                {
+                    Thread.Sleep(1000);
+                    conect = false;
+                }
+            }
         }
 
         public void Start(string queues, Func<string, bool> delegat)

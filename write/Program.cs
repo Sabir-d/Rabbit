@@ -13,7 +13,7 @@ namespace write
         {
             string mes;
             bool close = true;
-            Sending sending = new Sending();
+            Sending sending = new Sending("localhost", "sabir", "service");
             while (close)
             {
                 Console.WriteLine("Введите сообщение");
