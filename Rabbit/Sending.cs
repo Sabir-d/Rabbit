@@ -57,7 +57,9 @@ namespace Rabbit
                 catch { 
                 
                 }
-                } 
+
+                }
+            conect= false;
         }
     }
 }
